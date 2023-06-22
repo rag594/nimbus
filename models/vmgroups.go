@@ -12,11 +12,7 @@ type VMGroups struct {
 				Name     string `json:"name"`
 				Query    string `json:"query"`
 				Duration int    `json:"duration"`
-				Labels   struct {
-					Severity  string `json:"severity"`
-					Squadcast string `json:"squadcast"`
-					Team      string `json:"team"`
-				} `json:"labels"`
+				Labels   map[string]string `json:"labels"`
 				Annotations struct {
 					Summary string `json:"summary"`
 				} `json:"annotations"`

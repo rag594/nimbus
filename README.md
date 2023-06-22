@@ -3,6 +3,9 @@ CLI based tool to query VMAlerts.VMAlerts Ui is currently cluttered and too slow
 
 ## Install
 
+```
+go get github.com/rag594/nimbus@v0.0.1
+```
 
 ## Usage
 
@@ -11,15 +14,18 @@ CLI based tool to query VMAlerts.VMAlerts Ui is currently cluttered and too slow
 ```console
 foo@bar:~$ nimbus alerts help
 NAME:
-   CLI for VM Alerts alerts - get the list of alerts and other info(state, description etc)
+   CLI for VM Alerts alerts - enter your team name to get info on alerts
 
 USAGE:
-   use team or alertGroup flags to get info on team/alertGroup wise alerts
+   CLI for VM Alerts alerts [command options] [arguments...]
 
 OPTIONS:
-   --team value        team wise alerts in firing or pending state
-   --alertGroup value  group wise alerts in firing or pending state
-   --help, -h          show help
+   --name value  filter alerts by name
+
+   Labels
+
+   --label value  filter alerts by labels, provide key and then value. Example --label <key> --value <value>
+   --value value  filter alerts by value, value should be provided with label. Example --label <key> --value <value>
 ```
 
 ### Groups
@@ -34,5 +40,9 @@ USAGE:
 
 OPTIONS:
    --name value  list rules name wise
-   --help, -h    show help
+
+   Labels
+
+   --label value  filter rules by labels, provide key and then value. Example --label <key> --value <value>
+   --value value  filter rules by value, value should be provided with label. Example --label <key> --value <value>
 ```

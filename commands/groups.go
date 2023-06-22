@@ -23,12 +23,28 @@ type GroupCommand struct {
 
 func NewGroupCommand(host string, client *httpClient.Client) *GroupCommand {
 	uri := fmt.Sprintf("%s%s", host, rulesPath)
-	var groupName string
+	var (
+		label string
+		groupName  string
+		value string
+	)
 	command := &cli.Command{
 		Name:  "group",
 		Usage: "lists down the rules",
 		UsageText: "use name flag to get info alertRules applied and get their state",
 		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:        "label",
+				Usage:       "filter rules by labels, provide key and then value. Example --label <key> --value <value>",
+				Destination: &label,
+				Category:    "Labels",
+			},
+			&cli.StringFlag{
+				Name:        "value",
+				Usage:       "filter rules by value, value should be provided with label. Example --label <key> --value <value>",
+				Destination: &value,
+				Category:    "Labels",
+			},
 			&cli.StringFlag{
 				Name:        "name",
 				Usage:       "list rules name wise",
@@ -56,11 +72,20 @@ func NewGroupCommand(host string, client *httpClient.Client) *GroupCommand {
 			tbl := table.New("Rule", "State")
 			tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
 			for _, vmGroup := range vmGroups.Data.Groups {
-				if vmGroup.Name == groupName {
+				if groupName != "" && vmGroup.Name == groupName {
 					for _, rule := range vmGroup.Rules {
 						tbl.AddRow(rule.Name, rule.State)
 					}
 				}
+
+				if label != "" && value != "" {
+					for _, rule := range vmGroup.Rules {
+						val, ok := rule.Labels[label]
+						if ok && val == value {
+							tbl.AddRow(rule.Name, rule.State)
+						}
+				}
+			}
 
 			}
 
