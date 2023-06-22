@@ -4,12 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/fatih/color"
-	"github.com/rodaine/table"
-	"github.com/urfave/cli/v2"
 	"net/http"
 	"nimbus/httpClient"
 	"nimbus/models"
+
+	"github.com/fatih/color"
+	"github.com/rodaine/table"
+	"github.com/urfave/cli/v2"
 )
 
 const (
@@ -25,7 +26,8 @@ func NewGroupCommand(host string, client *httpClient.Client) *GroupCommand {
 	var groupName string
 	command := &cli.Command{
 		Name:  "group",
-		Usage: "enter your group to get list of rules",
+		Usage: "lists down the rules",
+		UsageText: "use name flag to get info alertRules applied and get their state",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:        "name",

@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/urfave/cli/v2"
 	"log"
 	commands "nimbus/commands"
 	"nimbus/httpClient"
 	"os"
+
+	"github.com/urfave/cli/v2"
 )
 
 func main() {
@@ -19,6 +20,7 @@ func main() {
 	groupCommand := commands.NewGroupCommand(vmHost, client).Command
 	cliCommands := []*cli.Command{alertCommand, groupCommand}
 	app := &cli.App{
+		Name: "CLI for VM Alerts",
 		Commands: cliCommands,
 	}
 

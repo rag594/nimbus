@@ -4,12 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/fatih/color"
-	"github.com/rodaine/table"
-	"github.com/urfave/cli/v2"
 	"net/http"
 	"nimbus/httpClient"
 	"nimbus/models"
+
+	"github.com/fatih/color"
+	"github.com/rodaine/table"
+	"github.com/urfave/cli/v2"
 )
 
 const (
@@ -26,7 +27,8 @@ func NewAlertCommand(host string, client *httpClient.Client) *AlertCommand {
 	var alertGroup string
 	command := &cli.Command{
 		Name:  "alerts",
-		Usage: "enter your team name to get info on alerts",
+		Usage: "get the list of alerts and other info(state, description etc)",
+		UsageText: "use team or alertGroup flags to get info on team/alertGroup wise alerts",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:        "team",
