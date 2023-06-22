@@ -14,7 +14,7 @@ go get github.com/rag594/nimbus@v0.0.1
 ```console
 foo@bar:~$ nimbus alerts help
 NAME:
-   CLI for VM Alerts alerts - enter your team name to get info on alerts
+   CLI for VM Alerts alerts - filter your alerts by name or labels
 
 USAGE:
    CLI for VM Alerts alerts [command options] [arguments...]
