@@ -8,11 +8,11 @@ type VMGroups struct {
 		Groups []struct {
 			Name  string `json:"name"`
 			Rules []struct {
-				State    string `json:"state"`
-				Name     string `json:"name"`
-				Query    string `json:"query"`
-				Duration int    `json:"duration"`
-				Labels   map[string]string `json:"labels"`
+				State       string            `json:"state"`
+				Name        string            `json:"name"`
+				Query       string            `json:"query"`
+				Duration    int               `json:"duration"`
+				Labels      map[string]string `json:"labels"`
 				Annotations struct {
 					Summary string `json:"summary"`
 				} `json:"annotations"`
