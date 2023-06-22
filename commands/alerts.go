@@ -29,7 +29,7 @@ func NewAlertCommand(host string, client *httpClient.Client) *AlertCommand {
 	)
 	command := &cli.Command{
 		Name:  "alerts",
-		Usage: "enter your team name to get info on alerts",
+		Usage: "filter your alerts by name or labels",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:        "label",
