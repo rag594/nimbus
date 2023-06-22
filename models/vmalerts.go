@@ -6,10 +6,10 @@ type VMAlerts struct {
 	Status string `json:"status"`
 	Data   struct {
 		Alerts []struct {
-			State  string `json:"state"`
-			Name   string `json:"name"`
-			Value  string `json:"value"`
-			Labels map[string]string `json:"labels"`
+			State       string            `json:"state"`
+			Name        string            `json:"name"`
+			Value       string            `json:"value"`
+			Labels      map[string]string `json:"labels"`
 			Annotations struct {
 				Description string `json:"description"`
 				Mode        string `json:"mode"`
