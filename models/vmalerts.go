@@ -9,14 +9,7 @@ type VMAlerts struct {
 			State  string `json:"state"`
 			Name   string `json:"name"`
 			Value  string `json:"value"`
-			Labels struct {
-				Alertgroup string `json:"alertgroup"`
-				Alertname  string `json:"alertname"`
-				Alerttype  string `json:"alerttype"`
-				Pg         string `json:"pg"`
-				Product    string `json:"product"`
-				Team       string `json:"team"`
-			} `json:"labels"`
+			Labels map[string]string `json:"labels"`
 			Annotations struct {
 				Description string `json:"description"`
 				Mode        string `json:"mode"`
