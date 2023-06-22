@@ -5,6 +5,8 @@ CLI based tool to query VMAlerts.VMAlerts Ui is currently cluttered and too slow
 
 ## Install
 
+###### Go version >= 1.18
+
 ```
 go install github.com/rag594/nimbus@v0.0.3
 ```
