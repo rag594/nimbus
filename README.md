@@ -1,6 +1,8 @@
 # nimbus
 CLI based tool to query VMAlerts.VMAlerts Ui is currently cluttered and too slow.Want fast access to your rules/alerts then just nimbus it.
 
+![Screenshot](assets/image.png)
+
 ## Install
 
 ```
