@@ -4,12 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"net/http"
+
 	"github.com/fatih/color"
+	"github.com/rag594/nimbus/httpClient"
+	"github.com/rag594/nimbus/models"
 	"github.com/rodaine/table"
 	"github.com/urfave/cli/v2"
-	"net/http"
-	"nimbus/httpClient"
-	"nimbus/models"
 )
 
 const (

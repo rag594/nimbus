@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	commands "nimbus/commands"
-	"nimbus/httpClient"
+	commands "github.com/rag594/nimbus/commands"
+	"github.com/rag594/nimbus/httpClient"
 	"os"
 
 	"github.com/urfave/cli/v2"

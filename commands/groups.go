@@ -5,8 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"nimbus/httpClient"
-	"nimbus/models"
+
+	"github.com/rag594/nimbus/httpClient"
+	"github.com/rag594/nimbus/models"
 
 	"github.com/fatih/color"
 	"github.com/rodaine/table"

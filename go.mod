@@ -1,4 +1,4 @@
-module nimbus
+module github.com/rag594/nimbus
 
 go 1.18
 
