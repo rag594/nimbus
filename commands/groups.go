@@ -24,13 +24,13 @@ type GroupCommand struct {
 func NewGroupCommand(host string, client *httpClient.Client) *GroupCommand {
 	uri := fmt.Sprintf("%s%s", host, rulesPath)
 	var (
-		label string
-		groupName  string
-		value string
+		label     string
+		groupName string
+		value     string
 	)
 	command := &cli.Command{
-		Name:  "group",
-		Usage: "lists down the rules",
+		Name:      "group",
+		Usage:     "lists down the rules",
 		UsageText: "use name flag to get info alertRules applied and get their state",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
@@ -84,8 +84,8 @@ func NewGroupCommand(host string, client *httpClient.Client) *GroupCommand {
 						if ok && val == value {
 							tbl.AddRow(rule.Name, rule.State)
 						}
+					}
 				}
-			}
 
 			}
 
