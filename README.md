@@ -11,6 +11,10 @@ go get github.com/rag594/nimbus@v0.0.2
 
 ## Usage
 
+```
+export VM_HOST=<your VM alerts host>
+```
+
 ### Alerts
 
 ```console
