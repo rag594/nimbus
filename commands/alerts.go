@@ -4,13 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"net/http"
-	"nimbus/httpClient"
-	"nimbus/models"
-
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
 	"github.com/urfave/cli/v2"
+	"net/http"
+	"nimbus/httpClient"
+	"nimbus/models"
 )
 
 const (
@@ -23,22 +22,31 @@ type AlertCommand struct {
 
 func NewAlertCommand(host string, client *httpClient.Client) *AlertCommand {
 	uri := fmt.Sprintf("%s%s", host, alertPath)
-	var team string
-	var alertGroup string
+	var (
+		label string
+		name  string
+		value string
+	)
 	command := &cli.Command{
 		Name:  "alerts",
-		Usage: "get the list of alerts and other info(state, description etc)",
-		UsageText: "use team or alertGroup flags to get info on team/alertGroup wise alerts",
+		Usage: "enter your team name to get info on alerts",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:        "team",
-				Usage:       "team wise alerts in firing or pending state",
-				Destination: &team,
+				Name:        "label",
+				Usage:       "filter alerts by labels, provide key and then value. Example --label <key> --value <value>",
+				Destination: &label,
+				Category:    "Labels",
 			},
 			&cli.StringFlag{
-				Name:        "alertGroup",
-				Usage:       "group wise alerts in firing or pending state",
-				Destination: &alertGroup,
+				Name:        "value",
+				Usage:       "filter alerts by value, value should be provided with label. Example --label <key> --value <value>",
+				Destination: &value,
+				Category:    "Labels",
+			},
+			&cli.StringFlag{
+				Name:        "name",
+				Usage:       "filter alerts by name",
+				Destination: &name,
 			},
 		},
 		Action: func(cCtx *cli.Context) error {
@@ -62,8 +70,15 @@ func NewAlertCommand(host string, client *httpClient.Client) *AlertCommand {
 			tbl := table.New("AlertName", "Summary", "Description", "State")
 			tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
 			for _, vmAlert := range vmAlerts.Data.Alerts {
-				if vmAlert.Labels.Team == team || vmAlert.Labels.Alertgroup == alertGroup {
-					tbl.AddRow(vmAlert.Labels.Alertname, vmAlert.Annotations.Summary, vmAlert.Annotations.Description, vmAlert.State)
+				if name != "" && vmAlert.Name == name {
+					tbl.AddRow(vmAlert.Labels["alertname"], vmAlert.Annotations.Summary, vmAlert.Annotations.Description, vmAlert.State)
+				}
+
+				if label != "" && value != "" {
+					val, ok := vmAlert.Labels[label]
+					if ok && val == value {
+						tbl.AddRow(vmAlert.Labels["alertname"], vmAlert.Annotations.Summary, vmAlert.Annotations.Description, vmAlert.State)
+					}
 				}
 
 			}
