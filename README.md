@@ -1,6 +1,16 @@
 # nimbus
-CLI based tool to query VMAlerts.VMAlerts UI is currently cluttered and too slow.
-Want fast access to your rules/alerts then just nimbus it.
+
+#### what is vmalert ?
+vmalert executes a list of the given alerting or recording rules against configured `-datasource.url` compatible with Prometheus HTTP API. You can refer the doc https://docs.victoriametrics.com/vmalert.html to know more about vmalert.
+
+#### what does nimbus do ?
+It is a CLI based tool to provide insights into what are the different **alerts/rules** that are being fired or in inactive state. <br/> 
+Currently foolowing insights are provided:
+
+- Alerts can be filtered or queried by labels or name to get the list of alerts with following attributes(name, summary, description, state)
+- Rules that are applied can e queried by labels or name to get list of rules. Rule name and the current state(inactive or firing) will be displayed.
+
+vmalert UI displays a lot of information when more than one team is working on it. Not enough visibility on what alerts/rules are being used for a particular team.
 
 ![Screenshot](assets/image.png)
 
@@ -13,6 +23,7 @@ go install github.com/rag594/nimbus@v0.0.3
 ```
 
 ## Usage
+`VM_HOST` needs to be exported to point to vmalert host
 
 ```
 export VM_HOST=<your VM alerts host>
