@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	alertPath = "/vmalert/api/v1/alerts"
+	alertPath = "/api/v1/alerts"
 )
 
 type AlertCommand struct {
