@@ -19,7 +19,7 @@ vmalert UI displays a lot of information when more than one team is working on i
 ###### Go version >= 1.18
 
 ```
-go install github.com/rag594/nimbus@v0.0.3
+go install github.com/rag594/nimbus@v0.0.4
 ```
 
 ## Usage
