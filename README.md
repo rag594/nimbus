@@ -16,6 +16,12 @@ vmalert UI displays a lot of information when more than one team is working on i
 
 ## Install
 
+#### For Mac
+```
+brew tap rag594/tap
+brew install nimbus
+```
+
 ###### Go version >= 1.18
 
 ```
