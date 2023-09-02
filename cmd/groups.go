@@ -1,4 +1,4 @@
-package commands
+package cmd
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/rag594/nimbus/httpClient"
-	"github.com/rag594/nimbus/models"
+	"github.com/rag594/nimbus/rules"
 
 	"github.com/fatih/color"
 	"github.com/rodaine/table"
@@ -54,7 +54,7 @@ func NewGroupCommand(host string, client *httpClient.Client) *GroupCommand {
 		},
 		Action: func(cCtx *cli.Context) error {
 			res, err := client.Get(context.Background(), uri, nil)
-			vmGroups := &models.VMGroups{}
+			vmGroups := &rules.VMGroups{}
 			if err != nil {
 				fmt.Println("Error in requesting groups data", err)
 			}

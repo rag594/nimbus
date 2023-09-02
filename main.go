@@ -2,9 +2,10 @@ package main
 
 import (
 	"log"
-	commands "github.com/rag594/nimbus/commands"
-	"github.com/rag594/nimbus/httpClient"
 	"os"
+
+	commands "github.com/rag594/nimbus/cmd"
+	"github.com/rag594/nimbus/httpClient"
 
 	"github.com/urfave/cli/v2"
 )
@@ -20,7 +21,7 @@ func main() {
 	groupCommand := commands.NewGroupCommand(vmHost, client).Command
 	cliCommands := []*cli.Command{alertCommand, groupCommand}
 	app := &cli.App{
-		Name: "CLI for VM Alerts",
+		Name:     "CLI for VM Alerts",
 		Commands: cliCommands,
 	}
 

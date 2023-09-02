@@ -1,4 +1,4 @@
-package commands
+package cmd
 
 import (
 	"context"
@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/fatih/color"
+	"github.com/rag594/nimbus/alerts"
 	"github.com/rag594/nimbus/httpClient"
-	"github.com/rag594/nimbus/models"
 	"github.com/rodaine/table"
 	"github.com/urfave/cli/v2"
 )
@@ -52,7 +52,7 @@ func NewAlertCommand(host string, client *httpClient.Client) *AlertCommand {
 		},
 		Action: func(cCtx *cli.Context) error {
 			res, err := client.Get(context.Background(), uri, nil)
-			vmAlerts := &models.VMAlerts{}
+			vmAlerts := &alerts.VMAlerts{}
 			if err != nil {
 				fmt.Println("Error in requesting vmalerts data", err)
 			}
@@ -72,13 +72,13 @@ func NewAlertCommand(host string, client *httpClient.Client) *AlertCommand {
 			tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
 			for _, vmAlert := range vmAlerts.Data.Alerts {
 				if name != "" && vmAlert.Name == name {
-					tbl.AddRow(vmAlert.Labels["alertname"], vmAlert.Annotations.Summary, vmAlert.Annotations.Description, vmAlert.State)
+					tbl.AddRow(vmAlert.Labels["alertname"], vmAlert.Annotations["Summary"], vmAlert.Annotations["Description"], vmAlert.State)
 				}
 
 				if label != "" && value != "" {
 					val, ok := vmAlert.Labels[label]
 					if ok && val == value {
-						tbl.AddRow(vmAlert.Labels["alertname"], vmAlert.Annotations.Summary, vmAlert.Annotations.Description, vmAlert.State)
+						tbl.AddRow(vmAlert.Labels["alertname"], vmAlert.Annotations["Summary"], vmAlert.Annotations["Description"], vmAlert.State)
 					}
 				}
 
