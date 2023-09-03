@@ -12,7 +12,7 @@ Currently foolowing insights are provided:
 
 vmalert UI displays a lot of information when more than one team is working on it. Not enough visibility on what alerts/rules are being used for a particular team.
 
-![Screenshot](assets/image.png)
+<img src="https://github.com/rag594/nimbus/assets/8286518/49bd224c-6b5d-4cd9-a5ec-1473f226a100" width=50% height=50%>
 
 ## Install
 
