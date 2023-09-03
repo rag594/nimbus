@@ -44,7 +44,7 @@ func NewAlertCommand(vmClient *httpClient.VMClient) *AlertCommand {
 				return err
 			}
 
-			alertsTable := alerts.NewAlertsTable(vmAlerts, "AlertName", "Summary", "Description", "State", "ActiveAt")
+			alertsTable := alerts.NewAlertsTable(vmAlerts, "AlertName", "Labels", "Annotaions", "State", "ActiveAt")
 			if table := alertsTable.ListAlertsByLabels(label, value); table != nil {
 				table.Print()
 			}

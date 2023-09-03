@@ -1,6 +1,10 @@
 package alerts
 
-import "time"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
 type VMAlertsResponse struct {
 	Status string     `json:"status"`
@@ -24,4 +28,20 @@ type Alert struct {
 	Expression  string            `json:"expression"`
 	Source      string            `json:"source"`
 	Restored    bool              `json:"restored"`
+}
+
+func (a Alert) FormatLabels() string {
+	var labelsBuilder strings.Builder
+	for key, value := range a.Labels {
+		labelsBuilder.WriteString(fmt.Sprintf("%s_%s\n", key, value))
+	}
+	return labelsBuilder.String()
+}
+
+func (a Alert) FormatAnnotations() string {
+	var annotationsBuilder strings.Builder
+	for key, value := range a.Annotations {
+		annotationsBuilder.WriteString(fmt.Sprintf("%s_%s\n", key, value))
+	}
+	return annotationsBuilder.String()
 }
