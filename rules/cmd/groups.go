@@ -49,7 +49,7 @@ func NewGroupCommand(vmClient *httpClient.VMClient) *GroupCommand {
 			if err != nil {
 				return err
 			}
-			vmRulesTable := rules.NewRulesTable(vmRules, "Rule", "State")
+			vmRulesTable := rules.NewRulesTable(vmRules, "Rule", "State", "Health")
 
 			if table := vmRulesTable.ListRulesByGroupName(groupName); table != nil {
 				table.Print()

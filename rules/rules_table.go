@@ -28,7 +28,7 @@ func (t *rulesTable) ListRulesByGroupName(name string) table.Table {
 	for _, vmGroup := range t.rules.Data.Groups {
 		if vmGroup.Name == name {
 			for _, rule := range vmGroup.Rules {
-				t.table.AddRow(rule.Name, rule.State)
+				t.table.AddRow(rule.Name, rule.State, rule.Health)
 			}
 		}
 	}
@@ -45,7 +45,7 @@ func (t *rulesTable) ListRulesByLabels(label, value string) table.Table {
 		for _, rule := range vmGroup.Rules {
 			val, ok := rule.Labels[label]
 			if ok && val == value {
-				t.table.AddRow(rule.Name, rule.State)
+				t.table.AddRow(rule.Name, rule.State, rule.Health)
 			}
 		}
 	}
