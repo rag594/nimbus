@@ -4,8 +4,9 @@ import (
 	"log"
 	"os"
 
-	commands "github.com/rag594/nimbus/cmd"
+	alertsCmd "github.com/rag594/nimbus/alerts/cmd"
 	"github.com/rag594/nimbus/httpClient"
+	rulesCmd "github.com/rag594/nimbus/rules/cmd"
 
 	"github.com/urfave/cli/v2"
 )
@@ -17,8 +18,9 @@ func main() {
 		os.Exit(0)
 	}
 	client := httpClient.Init()
-	alertCommand := commands.NewAlertCommand(vmHost, client).Command
-	groupCommand := commands.NewGroupCommand(vmHost, client).Command
+	vmClient := httpClient.NewVmClient(vmHost, client)
+	alertCommand := alertsCmd.NewAlertCommand(vmClient).Command
+	groupCommand := rulesCmd.NewGroupCommand(vmClient).Command
 	cliCommands := []*cli.Command{alertCommand, groupCommand}
 	app := &cli.App{
 		Name:     "CLI for VM Alerts",
