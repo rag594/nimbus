@@ -26,7 +26,8 @@ func NewVmClient(host string, client *Client) *VMClient {
 }
 
 func (v *VMClient) GetVMAlerts() (*alerts.VMAlertsResponse, error) {
-	res, err := v.client.Get(context.Background(), alertsURI, nil)
+	uri := fmt.Sprintf("%s%s", v.host, alertsURI)
+	res, err := v.client.Get(context.Background(), uri, nil)
 	if err != nil {
 		fmt.Println("Error in requesting vmalerts data", err)
 	}
@@ -45,7 +46,8 @@ func (v *VMClient) GetVMAlerts() (*alerts.VMAlertsResponse, error) {
 }
 
 func (v *VMClient) GetVMGroups() (*rules.VMGroupResponse, error) {
-	res, err := v.client.Get(context.Background(), rulesURI, nil)
+	uri := fmt.Sprintf("%s%s", v.host, rulesURI)
+	res, err := v.client.Get(context.Background(), uri, nil)
 	if err != nil {
 		fmt.Println("Error in requesting vmalerts data", err)
 	}
