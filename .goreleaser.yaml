@@ -28,7 +28,7 @@ changelog:
       - '^docs:'
       - '^test:'
 brews:
-- name: gophersay
+- name: nimbus
   # goarm: 6
   homepage: https://github.com/rag594/homebrew-tap
   tap:
