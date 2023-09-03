@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-//Client defines Http Client
+// Client defines Http Client
 type Client struct {
 	httpClient *http.Client
 }
