@@ -45,3 +45,7 @@ func (a Alert) FormatAnnotations() string {
 	}
 	return annotationsBuilder.String()
 }
+
+func (a Alert) GetActivateAt() string {
+	return a.ActiveAt.Local().Format("2006-01-02 15:04:05")
+}

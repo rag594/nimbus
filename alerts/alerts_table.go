@@ -27,7 +27,7 @@ func (t *alertsTable) ListAlertsByName(name string) table.Table {
 
 	for _, vmAlert := range t.alerts.Data.Alerts {
 		if vmAlert.Name == name {
-			t.table.AddRow(vmAlert.Name, vmAlert.FormatLabels(), vmAlert.FormatAnnotations(), vmAlert.State, vmAlert.ActiveAt)
+			t.table.AddRow(vmAlert.Name, vmAlert.FormatLabels(), vmAlert.FormatAnnotations(), vmAlert.State, vmAlert.GetActivateAt())
 		}
 	}
 
@@ -42,7 +42,7 @@ func (t *alertsTable) ListAlertsByLabels(label, value string) table.Table {
 	for _, vmAlert := range t.alerts.Data.Alerts {
 		val, ok := vmAlert.Labels[label]
 		if ok && val == value {
-			t.table.AddRow(vmAlert.Name, vmAlert.FormatLabels(), vmAlert.FormatAnnotations(), vmAlert.State)
+			t.table.AddRow(vmAlert.Name, vmAlert.FormatLabels(), vmAlert.FormatAnnotations(), vmAlert.State, vmAlert.GetActivateAt())
 		}
 	}
 
